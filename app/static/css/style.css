@@ -1,0 +1,222 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/*Desktop*/
+:root {
+  --normal: url(../img/wave-norm.svg);
+  --darks: url(../img/wave-norm-black.svg);
+  --text-theme: black;
+  --cont2: url(../img/wave-mob.svg);
+}
+.dark-theme {
+  --normal: url(../img/wave-norm-black.svg);
+  --text-theme: white;
+  --cont2: url(../img/wave-mob-black.svg);
+}
+@media screen and (max-width: 600px) {
+  .container {
+    height: auto;
+    width: 100%;
+    background-image: var(--normal);
+
+    background-position: center;
+    background-size: cover;
+    padding-left: 5%;
+    padding-right: 5%;
+    box-sizing: border-box;
+    position: relative;
+  }
+  .title h1 {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+  }
+  .title p {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 15px;
+  }
+  .tools-title {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+  }
+  .stats img {
+    height: 50%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  .stats h2 {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+  }
+  .stats p {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+  }
+  .thumb img {
+    height: 50%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  .thumb h2 {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+  }
+  .thumb p {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+  }
+  .video img {
+    height: 50%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  .video h2 {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+  }
+  .video p {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+  }
+  .lyrics img {
+    height: 50%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  .lyrics h2 {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+  }
+  .lyrics p {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+  }
+}
+@media screen and (min-width: 1300px) {
+  .container {
+    height: auto;
+    width: 100%;
+    background-image: var(--normal);
+
+    background-position: center;
+    background-size: cover;
+    padding-left: 5%;
+    padding-right: 5%;
+    box-sizing: border-box;
+    position: relative;
+  }
+  .title h1 {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+  }
+  .title p {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 25px;
+  }
+  .tools-title {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+  }
+  .stats img {
+    height: 20%;
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  .stats h2 {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+  }
+  .stats p {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+  }
+  .thumb img {
+    height: 20%;
+    width:20%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  .thumb h2 {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+  }
+  .thumb p {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+  }
+  .video img {
+    height: 20%;
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  .video h2 {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+  }
+  .video p {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+  }
+  .lyrics img {
+    height: 20%;
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  .lyrics h2 {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+  }
+  .lyrics p {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+  }
+}

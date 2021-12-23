@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Youtube Thumbnail Downloader</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/thumb.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/btn.css')}}"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div class="title">
+        <h1>Youtube Thumbnail Downloader</h1>
+      </div>
+      <br /><br /><br /><br />
+      <p class="tuto">
+        Step one copy a link of a youtube video and paste it on the search bar
+        then click on the download button and right click on the thumbnail and click on save image as to save it on your computer.
+      </p>
+      <br><br><br><br>
+      <form action="/thumbnail" method="post">
+        <input
+          class="url"
+          type="text"
+          name="url"
+          placeholder="Enter video url"
+          required
+        />
+        <br /><br /><br />
+        <div class="btn">
+            <form action=" {{ img }} " method="get">
+          <button onclick="windows.open('{{img}}')" class="bttn-unite bttn-md bttn-primary" type="submit">
+            Download
+          </button>
+        </form>
+        </div>
+        <br><br><br>
+        <div class="thumb">
+            <img  class="thumb" src=" {{img}} ">
+        </div>
+        <div class="yt_title">
+            <p> {{ tit }} </p>
+            
+        </div>
+      </form>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      
+    </div>
+  </body>
+</html>
