@@ -1,10 +1,30 @@
-from flask import Flask, render_template, request, send_file
+from __future__ import unicode_literals
+from flask import Flask, render_template, request, send_file, redirect
+from werkzeug.utils import secure_filename
 from mcstatus import MinecraftServer
 from pytube import YouTube
 from PyLyrics import *
+from PIL import Image
+import os
+from datetime import datetime
+import youtube_dl
+from tube_dl import Youtube
+from pydub import AudioSegment
+
+
+UPLOAD_FOLDER = 'uploads'
+
+DOWNLOAD_FOLDER = 'downloads'
 
 
 app = Flask(__name__)
+
+DIR_PATH = os.path.dirname(os.path.realpath(__file__))
+
+app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024
 
 
 @app.route("/")  # home page
@@ -57,20 +77,19 @@ def thumbnail_post():
 
 @app.route("/video")  # path to download youtube vidoes
 def video():
-   
+
     return render_template("video.html")
 
 
 @app.route("/video", methods=["POST"])
 def video_post():
-    
-    
+
     if request.form['submit'] == '1080p':
         input = request.form.get("url")  # gets input from the user
         download_path = YouTube(input).streams.get_by_itag(137).download()
         fname = download_path.split('//')[-1]
         return send_file(fname, as_attachment=True)
-    
+
     if request.form['submit'] == '720p':
         input = request.form.get("url")  # gets input from the user
         download_path = YouTube(input).streams.get_by_itag(22).download()
@@ -82,9 +101,27 @@ def video_post():
         download_path = YouTube(input).streams.get_by_itag(18).download()
         fname = download_path.split('//')[-1]
         return send_file(fname, as_attachment=True)
+
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
+@app.route("/music", methods=['GET', 'POST'])  # path to lyrics
+def music():
+
+    return render_template('music.html')
+
+
+@app.route("/music_s", methods=['GET', 'POST'])  # path to lyrics
+def music_post():
+    input = request.form.get("url")  # gets input from the user
+    download_path = YouTube(input).streams.get_by_itag(251).download()
+    fname = download_path.split('//')[-1]
+    return send_file(fname, as_attachment=True)
+
     
-   
-   
 
 
 if __name__ == "__main__":
