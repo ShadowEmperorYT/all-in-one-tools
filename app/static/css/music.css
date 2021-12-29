@@ -1,0 +1,183 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/*Desktop*/
+:root {
+  --normal: url(../img/wave-norm.svg);
+  --darks: url(../img/wave-norm-black.svg);
+  --text-theme: black;
+  --cont2: url(../img/wave-mob.svg);
+}
+.dark-theme {
+  --normal: url(../img/wave-norm-black.svg);
+  --text-theme: white;
+  --cont2: url(../img/wave-mob-black.svg);
+}
+
+@media screen and (max-width: 600px) {
+    .bg-image{
+        background-image: url('https://mdbootstrap.com/img/Photos/Others/images/76.jpg');
+            height: 100vh;
+    }
+  .container-fluid {
+    
+    background-image: var(--normal);
+
+    background-position: center;
+    background-size: cover;
+    padding-left: 5%;
+    padding-right: 5%;
+    box-sizing: border-box;
+    position: relative;
+  }
+  .title {
+    color: var(--text-theme);
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+  }
+  .url {
+    width: 100%;
+    border-radius: 25px;
+    border: 3px solid lightblue;
+    border-bottom: 3px solid lightblue;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+  }
+  .btn {
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+  }
+  .tuto {
+    font-family: "Roboto", sans-serif;
+    font-size: 30px;
+    text-align: center;
+    color: white;
+  }
+  .thumb {
+    height: 100%;
+    width: 100%;
+  }
+  .yt_title {
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+    color: white;
+  }
+  .yt_title a {
+    color: white;
+  }
+}
+@media screen and (min-width: 1300px) {
+  .container-fluid {
+    height: 100vh;
+    width: 100%;
+    background-image: var(--normal);
+
+    background-position: center;
+    background-size: cover;
+    padding-left: 5%;
+    padding-right: 5%;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+  }
+  .title {
+    color: var(--text-theme);
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+  }
+  .url {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    border-radius: 25px;
+    border: 3px solid lightblue;
+    border-bottom: 3px solid lightblue;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+  }
+  .btn {
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+  }
+  .tuto {
+    font-family: "Roboto", sans-serif;
+    font-size: 30px;
+    text-align: center;
+    color: white;
+  }
+  .thumb {
+    height: 60%;
+    width: 60%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .yt_title {
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+    color: white;
+  }
+  .yt_title a {
+    color: white;
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 1300px) {
+  .container-fluid {
+    height: auto;
+    width: 100%;
+    background-image: var(--normal);
+
+    background-position: center;
+    background-size: cover;
+    padding-left: 5%;
+    padding-right: 5%;
+    box-sizing: border-box;
+    position: relative;
+  }
+  .title {
+    color: var(--text-theme);
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+  }
+  .url {
+    width: 100%;
+    border-radius: 25px;
+    border: 3px solid lightblue;
+    border-bottom: 3px solid lightblue;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+  }
+  .btn {
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+  }
+  .tuto {
+    font-family: "Roboto", sans-serif;
+    font-size: 30px;
+    text-align: center;
+    color: white;
+  }
+  .thumb {
+    height: 100%;
+    width: 100%;
+  }
+  .yt_title {
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    font-size: 15px;
+    color: white;
+  }
+  .yt_title a {
+    color: white;
+  }
+}
