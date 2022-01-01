@@ -10,6 +10,11 @@ from datetime import datetime
 import youtube_dl
 from tube_dl import Youtube
 from pydub import AudioSegment
+from docx2pdf import convert
+import time
+from pdf2image import convert_from_path, convert_from_bytes
+
+
 
 
 UPLOAD_FOLDER = 'uploads'
@@ -23,10 +28,19 @@ DIR_PATH = os.path.dirname(os.path.realpath(__file__))
 
 app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+ALLOWED_EXTENSIONS = {'pdf', 'docx','png','jpg'}
 app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html"), 404 
 
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
+
+    
 @app.route("/")  # home page
 def home():
     return render_template("index.html")  # renders index.html
@@ -121,8 +135,77 @@ def music_post():
     fname = download_path.split('//')[-1]
     return send_file(fname, as_attachment=True)
 
+@app.route("/img")  # path to pdf to docx
+def pdf2docx():
+    return render_template("img.html")
+
+@app.route("/img", methods=["POST"])
+def pdf2docx_post():
+    if request.method == 'POST':
+        img = request.files['img']
+        options = request.form['options']
+        
+        if  img and (options != 'escolha'):
+            im = Image.open(img)
+            
+            if options == 'png':
+                r = im.save("download.png")
+                return send_file("download.png", as_attachment=True)
+                time.sleep(30)
+                os.remove("download.png")
+            elif options == 'jpg':
+                im = Image.open(img)
+                rgb_im = im.convert('RGB')
+                rgb_im.save('download.jpg')     
+                return send_file("download.jpg", as_attachment=True)
+                time.sleep(30)
+                os.remove("download.jpg")
+            elif options == 'ico':
+                r = im.save("download.ico")
+                return send_file("download.ico", as_attachment=True)
+                time.sleep(30)
+                os.remove("download.ico")
+            elif options == 'bmp':
+                im = Image.open(img)
+                rgb_im = im.convert('RGB')
+                rgb_im.save('download.BMP')
+                return send_file("download.BMP", as_attachment=True)
+                time.sleep(30)
+                os.remove("download.BMP")
+
+            else:
+                msg = 'invalid format'
+                return render_template('img.html', msg=msg)
+            
+            success = "successfully converted"
+            return render_template('img.html', success=success)
+        
+        msg = 'choose image and format'
+        return render_template('img.html', msg=msg)
+
+    return render_template('img.html')      
+
+@app.route("/pdf")  # path to pdf to docx
+def pdf():
+    return render_template('pdf.html')
+
+@app.route("/pdf", methods=["POST"])
+def pdf_post():
+    f = request.files['pdf']
+    f.save(secure_filename(f.filename))
+    filename = f.filename
+    convert(secure_filename(filename))
+    convert(secure_filename(filename), "result.pdf")
+    return send_file("result.pdf", as_attachment=True)
     
-
-
+    
+        
+    
+    
+            
+    
+        
+    
+    
 if __name__ == "__main__":
     app.run(debug=True)

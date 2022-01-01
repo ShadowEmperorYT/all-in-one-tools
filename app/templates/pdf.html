@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PDF 2 Image converter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pdf.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/boostrap/bootstrap.min.css') }}" />
+
+</head>
+<body>
+    <div class="container-fluid">
+        <h1 class="titless">PDF 2 Image</h1>
+        <br><br><br>
+        <main class="container d-flex justify-content-center">
+            <div class="" style="width: 18rem;">
+                <form class="mb-3  mt-5" action="/pdf" enctype="multipart/form-data" method="POST">
+                    <div class="mb-3">
+                        <input class="form-control" type="file" name="pdf" required>
+                    </div>
+                    
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-primary btn-block" type="submit">Convert</button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+
+
+
+
+
+
+    <script src="{{ url_for('static', filename='js/boostrap/bootstrap.bundle.min.js') }}"></script>
+
+</body>
+</html>

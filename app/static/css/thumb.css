@@ -21,7 +21,7 @@
     height: auto;
     width: 100%;
     background-image: var(--normal);
-
+    
     background-position: center;
     background-size: cover;
     padding-left: 5%;
@@ -177,3 +177,4 @@
     color: white;
   }
 }
+

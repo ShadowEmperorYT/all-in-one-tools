@@ -1,0 +1,51 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+.container-fluid{
+    background-image: url(../img/wave-norm.svg);
+    height: 100vh;
+    background-size: cover;
+    
+}
+.titless{
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+    
+}
+.img-fluid{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    
+}
+@media screen and (max-width: 800px){
+.img-fluid{
+    width: 50%;
+    height: 50%;
+}
+
+}
+@media screen and (min-width: 1200px){
+.img-fluid{
+    width: 10%;
+    height: 10%;
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Height*/
+@media screen and (max-height: 300px){
+.container-fluid{
+    height:auto;
+}
+}
+
