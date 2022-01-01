@@ -13,8 +13,7 @@ from pydub import AudioSegment
 from docx2pdf import convert
 import time
 from pdf2image import convert_from_path, convert_from_bytes
-
-
+import pythoncom
 
 
 UPLOAD_FOLDER = 'uploads'
@@ -194,9 +193,29 @@ def pdf_post():
     f = request.files['pdf']
     f.save(secure_filename(f.filename))
     filename = f.filename
-    convert(secure_filename(filename))
-    convert(secure_filename(filename), "result.pdf")
-    return send_file("result.pdf", as_attachment=True)
+    fuilesnames = secure_filename(f.filename)
+    convert(fuilesnames, "output.pdf", pythoncom.CoInitialize())
+    return send_file("output.pdf", as_attachment=True)
+    
+    
+    if os.path.exists("output.pdf"):
+        os.remove("output.pdf")
+    else:
+        print("The output file does not exist")
+    
+    if os.path.exists(fuiilesnames):
+        os.chmod(fuiilesnames, stat.S_IWRITE)
+        os.remove(fuiilesnames)
+    
+    else:
+        print("The file does not exist")
+        
+
+    
+        
+    
+    
+    
     
     
         
