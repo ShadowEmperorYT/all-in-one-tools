@@ -47,7 +47,7 @@ pyparsing==3.0.6
 python-docx==0.8.11
 pytube==11.0.2
 pytz-deprecation-shim==0.1.0.post0
-pywin32==303
+pywin32
 requests==2.26.0
 six==1.16.0
 soupsieve==2.3.1
