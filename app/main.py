@@ -149,6 +149,7 @@ def pdf2docx_post():
             
             if options == 'png':
                 r = im.save("download.png")
+                time.sleep(10)
                 return send_file("download.png", as_attachment=True)
                 time.sleep(30)
                 os.remove("download.png")
@@ -156,11 +157,13 @@ def pdf2docx_post():
                 im = Image.open(img)
                 rgb_im = im.convert('RGB')
                 rgb_im.save('download.jpg')     
+                time.sleep(10)
                 return send_file("download.jpg", as_attachment=True)
                 time.sleep(30)
                 os.remove("download.jpg")
             elif options == 'ico':
                 r = im.save("download.ico")
+                time.sleep(10)
                 return send_file("download.ico", as_attachment=True)
                 time.sleep(30)
                 os.remove("download.ico")
@@ -168,6 +171,7 @@ def pdf2docx_post():
                 im = Image.open(img)
                 rgb_im = im.convert('RGB')
                 rgb_im.save('download.BMP')
+                time.sleep(10)
                 return send_file("download.BMP", as_attachment=True)
                 time.sleep(30)
                 os.remove("download.BMP")
