@@ -13,7 +13,7 @@ from pydub import AudioSegment
 from docx2pdf import convert
 import time
 from pdf2image import convert_from_path, convert_from_bytes
-import pythoncom
+#import pythoncom
 
 
 UPLOAD_FOLDER = 'uploads'
@@ -184,31 +184,31 @@ def pdf2docx_post():
 
     return render_template('img.html')      
 
-@app.route("/pdf")  # path to pdf to docx
-def pdf():
-    return render_template('pdf.html')
+#@app.route("/pdf")  # path to pdf to docx
+#def pdf():
+#    return render_template('pdf.html')
 
-@app.route("/pdf", methods=["POST"])
-def pdf_post():
-    f = request.files['pdf']
-    f.save(secure_filename(f.filename))
-    filename = f.filename
-    fuilesnames = secure_filename(f.filename)
-    convert(fuilesnames, "output.pdf", pythoncom.CoInitialize())
-    return send_file("output.pdf", as_attachment=True)
-    
-    
-    if os.path.exists("output.pdf"):
-        os.remove("output.pdf")
-    else:
-        print("The output file does not exist")
-    
-    if os.path.exists(fuiilesnames):
-        os.chmod(fuiilesnames, stat.S_IWRITE)
-        os.remove(fuiilesnames)
-    
-    else:
-        print("The file does not exist")
+#@app.route("/pdf", methods=["POST"])
+#def pdf_post():
+#    f = request.files['pdf']
+#    f.save(secure_filename(f.filename))
+#    filename = f.filename
+#    fuilesnames = secure_filename(f.filename)
+#    convert(fuilesnames, "output.pdf", pythoncom.CoInitialize())
+#    return send_file("output.pdf", as_attachment=True)
+#    
+#    
+#    if os.path.exists("output.pdf"):
+#        os.remove("output.pdf")
+#    else:
+#        print("The output file does not exist")
+#    
+#    if os.path.exists(fuiilesnames):
+#        os.chmod(fuiilesnames, stat.S_IWRITE)
+#        os.remove(fuiilesnames)
+#    
+#    else:
+#        print("The file does not exist")
         
 
     
