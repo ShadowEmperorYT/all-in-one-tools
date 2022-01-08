@@ -117,6 +117,24 @@
     text-align: center;
     font-size: 20px;
   }
+  .compress img {
+    height: 50%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  .compress h2 {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+  }
+  .compress p {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+  }
 }
 @media screen and (min-width: 1300px) {
   .container {
@@ -214,6 +232,24 @@
     text-align: center;
   }
   .lyrics p {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+  }
+  .compress img {
+    height: 20%;
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  .compress h2 {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+  }
+  .compress p {
     font-family: "Roboto", sans-serif;
     color: white;
     text-align: center;
@@ -321,4 +357,71 @@
     text-align: center;
     font-size: 20px;
   }
+  .compress img {
+    height: 50%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  .compress h2 {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+  }
+  .compress p {
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width:1300px){
+  .feaut{
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+  }
+  .feaut img{
+    height: 20%;
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+  .feaut p{
+    font-family: "Roboto", sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+  }
+  .feaut h1{
+    color: aliceblue;
+  }
+  
+}
+@media screen and (min-width:100px) and (max-width: 1299){
+ 
+    .feaut{
+      text-align: center;
+      font-family: "Roboto", sans-serif;
+    }
+    .feaut img{
+      height: 50%;
+      width: 50%;
+      margin-left: auto;
+      margin-right: auto;
+      display: block;
+    }
+    .feaut p{
+      font-family: "Roboto", sans-serif;
+      color: white;
+      text-align: center;
+      font-size: 20px;
+    }
+    .feaut h1{
+      color: aliceblue;
+    }
+    
+  
 }

@@ -13,8 +13,8 @@ from pydub import AudioSegment
 from docx2pdf import convert
 import time
 from pdf2image import convert_from_path, convert_from_bytes
-#import pythoncom
 
+from img2pdf import *
 
 UPLOAD_FOLDER = 'uploads'
 
@@ -214,9 +214,25 @@ def pdf2docx_post():
 #    else:
 #        print("The file does not exist")
         
+@app.route("/imgc")  # path to img to pdf
+def img2pdf():
+    return render_template('imgc.html')
 
+@app.route("/imgc", methods=["POST"])
+def img2pdf_post():
+    try:
+        img = request.files['file']
+        im = Image.open(img)
+        im.convert('RGB').save('compressed.jpg', optimize=True, quality=10)    
+        return send_file("compressed.jpg", as_attachment=True)
+    except:
+        return render_template('imgc.html', msg= "Something went wrong the accepted formats are png and jpg" )
     
-        
+            
+    
+   
+    
+    
     
     
     
@@ -231,4 +247,4 @@ def pdf2docx_post():
     
     
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True,host='0.0.0.0')

@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/8ffbd8ec-e7b0-4217-acf1-86128608fe9d/resourceGroups/appsvc_linux_centralus_basic/providers/Microsoft.Web/sites/all-in-one-tools",
+    "appService.deploySubpath": "."
+}
