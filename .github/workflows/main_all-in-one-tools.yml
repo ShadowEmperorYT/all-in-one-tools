@@ -60,4 +60,4 @@ jobs:
         with:
           app-name: 'all-in-one-tools'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D9184A7825ED4767B417FBCA152C373F }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_CB36DC4A74374013AAE78B7BAE7C04F4 }}
