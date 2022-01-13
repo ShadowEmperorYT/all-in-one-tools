@@ -3,6 +3,20 @@
   <head>
     <title>All in one tools</title>
     <meta charset="utf-8" />
+
+    <meta name="title" content="All in one tools">
+<meta name="description" content="All in one tools is a website which have all the tools you need in one website">
+<meta name="keywords" content="converter,online-converter,mp4 to mp3,minecraft server status,image converter,music downloader,music download,image compressor,audio compressor,music compressor">
+<meta name="robots" content="index, follow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="language" content="English">
+<meta name="revisit-after" content="1 days">
+<meta name="author" content="Adhul Krishna">
+
+
+
+
+
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!--Modules here pls-->
     <script src="https://use.fontawesome.com/bae7dfc4a3.js"></script>
@@ -28,30 +42,18 @@
     <!--Nav bar-->
     
     
-    <div id='cssmenu'>
+  <!--  <div class="topnav" id='cssmenu'>
       <ul>
-         <li><a href='#'>Home</a></li>
-         <li class='active'><a href='#'>Products</a>
-            <ul>
-               <li><a href='#'>Product 1</a>
-                  <ul>
-                     <li><a href='#'>Sub Product</a></li>
-                     <li><a href='#'>Sub Product</a></li>
-                  </ul>
-               </li>
-               <li><a href='#'>Product 2</a>
-                  <ul>
-                     <li><a href='#'>Sub Product</a></li>
-                     <li><a href='#'>Sub Product</a></li>
-                  </ul>
-               </li>
-            </ul>
-         </li>
-         <li><a href='#'>About</a></li>
-         <li><a href='#'>Contact</a></li>
+         <li><a href='/'>Home</a></li>
+         <li ><a href='/video'>Youtube Video Downloader</a> </li>
+          <li><a href='/music'>Youtube Music Downloader</a></li>
+          <li><a href='/img'>Image format converter</a></li>
+         <li><a href='/imgc'>Image compressor</a></li>
+          <li><a href='/stats'>Minecraft Server Status</a></li>
+         <li><a href='/contact'>Contact</a></li>
       </ul>
       </div>
-
+-->
 
 
 
@@ -70,7 +72,7 @@
         <h1 class="tools-title">Tools</h1>
         <br /><br />
         <div class="stats">
-          <h2>Minecraft Server Status</h2>
+          <h2 class="new_anime" onclick="location.href='/stats'">Minecraft Server Status</h2>
           <img
             src="https://img.icons8.com/color/480/000000/minecraft-grass-cube.png"
           />
@@ -78,7 +80,7 @@
         </div>
         <br /><br />
         <div class="thumb">
-          <h2>Youtube Thumbnail Downloader</h2>
+          <h2 class="new_anime" onclick="location.href='/thumbnail'" >Youtube Thumbnail Downloader</h2>
           <img
             src="https://img.icons8.com/external-bearicons-flat-bearicons/480/000000/external-thumbnail-essential-collection-bearicons-flat-bearicons.png"
           />
@@ -86,19 +88,19 @@
         </div>
         <br /><br />
         <div class="video">
-          <h2>Youtube video downloader</h2>
+          <h2 class="new_anime" onclick="location.href='/video'" > Youtube video downloader</h2>
           <img src="https://img.icons8.com/color/480/000000/youtube-play.png" />
           <p>Download youtube video for free and without any pop-ups</p>
         </div>
         <br /><br />
         <div class="lyrics">
-          <h2>Image converter</h2>
+          <h2 class="new_anime" onclick="location.href='/img'" >Image converter</h2>
           <img src="https://img.icons8.com/color/480/000000/image.png" />
           <p>Convert your image into many formats</p>
         </div>
         <br /><br />
         <div class="compress">
-          <h2>Image compressor</h2>
+          <h2 class="new_anime" onclick="location.href='/imgc'" >Image compressor</h2>
           <img
             src="https://img.icons8.com/color/480/000000/resize-images.png"
           />
@@ -106,6 +108,12 @@
             Is your image big size? dont worry compress your image make it small
             size
           </p>
+        </div>
+        <br><br>
+        <div class="compress">
+          <h2 class="new_anime" onclick="location.href='/mp4'" >Mp4 to mp3</h2>
+          <img src="https://img.icons8.com/color/480/000000/video.png" />
+          <p>Convert mp4 files to mp3</p>
         </div>
       </div>
       <br><br><br><br><br>
@@ -126,6 +134,7 @@
             <img class="img-fluid" src="https://img.icons8.com/external-tal-revivo-filled-tal-revivo/480/000000/external-ads-pop-up-blocker-software-application-programe-advertising-filled-tal-revivo.png"/>
             <p>Our site dont have any pop-up while you download any files </p>
           </div>
+
         </div>
       </div>
     </div>
@@ -142,6 +151,97 @@
 
     <script  src="{{ url_for('static', filename='js/nav.js')}}"></script>
    
+     
   </body>
+
+  <footer class="footer">
+    <div class="footer__addr">
+      <h1 class="footer__logo">All in one tools</h1>
+          
+      <h2>Contact</h2>
+      
+      <address>
+       <br>
+            
+        <a class="footer__btn" href="mailto:adhul410@gmail.com">Email Us</a>
+      </address>
+    </div>
+    
+    <ul class="footer__nav">
+      <li class="nav__item">
+        <h2 class="nav__title">More Stuffs</h2>
+  
+        <ul class="nav__ul">
+          <li>
+            <a href="https://beast-bot.ga">Beast Bot</a>
+          </li>
+  
+          <li>
+            <a href="#">Firebones</a>
+          </li>
+              
+          <li>
+            <a href="https://www.all-in-one-tools.me">All in one tools</a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="nav__item nav__item--extra">
+        <h2 class="nav__title">Connect with us</h2>
+        
+        <ul class="nav__ul nav__ul--extra">
+          <li>
+            <a href="https://www.instagram.com/adhul_beast/">Instagram</a>
+          </li>
+          
+          <li>
+            <a href="https://discord.gg/wYSDCaRSZw">Discord</a>
+          </li>
+          
+          <li>
+            <a href="mailto:adhul410@gmail.com">Email</a>
+          </li>
+          
+          <li>
+            <a href="/contact">Contact form</a>
+          </li>
+          
+          <li>
+            <a href="">Twitter</a>
+          </li>
+          
+          <li>
+            <a href="https://www.buymeacoffee.com/captainbeast">Dontate</a>
+          </li>
+        </ul>
+      </li>
+      
+      <li class="nav__item">
+        <h2 class="nav__title">Legal</h2>
+        
+        <ul class="nav__ul">
+          <li>
+            <a href="/policy">Privacy Policy</a>
+          </li>
+          
+          <li>
+            <a href="/terms">Terms of Use</a>
+          </li>
+          
+          <li>
+            <a href="#">Sitemap</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    
+    <div class="legal">
+      <p>&copy; 2019 All in one tools. All rights reserved.</p>
+      
+      <div class="legal__links">
+        <span>Made with <span class="heart">♥</span> by Adhul Krishna (A.K.a CaptainBeast)</span>
+      </div>
+    </div>
+  </footer>
      
 </html>

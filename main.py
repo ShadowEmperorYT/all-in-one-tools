@@ -13,6 +13,7 @@ from pydub import AudioSegment
 from docx2pdf import convert
 import time
 from pdf2image import convert_from_path, convert_from_bytes
+from moviepy.editor import *
 
 from img2pdf import *
 
@@ -27,19 +28,20 @@ DIR_PATH = os.path.dirname(os.path.realpath(__file__))
 
 app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-ALLOWED_EXTENSIONS = {'pdf', 'docx','png','jpg'}
+ALLOWED_EXTENSIONS = {'pdf', 'docx', 'png', 'jpg'}
 app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024
+
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template("404.html"), 404 
+    return render_template("404.html"), 404
+
 
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 
-    
 @app.route("/")  # home page
 def home():
     return render_template("index.html")  # renders index.html
@@ -134,36 +136,38 @@ def music_post():
     fname = download_path.split('//')[-1]
     return send_file(fname, as_attachment=True)
 
+
 @app.route("/img")  # path to pdf to docx
 def pdf2docx():
     return render_template("img.html")
+
 
 @app.route("/img", methods=["POST"])
 def pdf2docx_post():
     if request.method == 'POST':
         img = request.files['img']
         options = request.form['options']
-        
-        if  img and (options != 'escolha'):
+
+        if img and (options != 'escolha'):
             im = Image.open(img)
-            
+
             if options == 'png':
                 r = im.save("download.png")
-                
+
                 return send_file("download.png", as_attachment=True)
                 time.sleep(30)
                 os.remove("download.png")
             elif options == 'jpg':
                 im = Image.open(img)
                 rgb_im = im.convert('RGB')
-                rgb_im.save('download.jpg')     
-               
+                rgb_im.save('download.jpg')
+
                 return send_file("download.jpg", as_attachment=True)
                 time.sleep(30)
                 os.remove("download.jpg")
             elif options == 'ico':
                 r = im.save("download.ico")
-                
+
                 return send_file("download.ico", as_attachment=True)
                 time.sleep(30)
                 os.remove("download.ico")
@@ -171,7 +175,7 @@ def pdf2docx_post():
                 im = Image.open(img)
                 rgb_im = im.convert('RGB')
                 rgb_im.save('download.BMP')
-        
+
                 return send_file("download.BMP", as_attachment=True)
                 time.sleep(30)
                 os.remove("download.BMP")
@@ -179,72 +183,86 @@ def pdf2docx_post():
             else:
                 msg = 'invalid format'
                 return render_template('img.html', msg=msg)
-            
+
             success = "successfully converted"
             return render_template('img.html', success=success)
-        
+
         msg = 'choose image and format'
         return render_template('img.html', msg=msg)
 
-    return render_template('img.html')      
+    return render_template('img.html')
 
-#@app.route("/pdf")  # path to pdf to docx
-#def pdf():
+# @app.route("/pdf")  # path to pdf to docx
+# def pdf():
 #    return render_template('pdf.html')
 
-#@app.route("/pdf", methods=["POST"])
-#def pdf_post():
+# @app.route("/pdf", methods=["POST"])
+# def pdf_post():
 #    f = request.files['pdf']
 #    f.save(secure_filename(f.filename))
 #    filename = f.filename
 #    fuilesnames = secure_filename(f.filename)
 #    convert(fuilesnames, "output.pdf", pythoncom.CoInitialize())
 #    return send_file("output.pdf", as_attachment=True)
-#    
-#    
+#
+#
 #    if os.path.exists("output.pdf"):
 #        os.remove("output.pdf")
 #    else:
 #        print("The output file does not exist")
-#    
+#
 #    if os.path.exists(fuiilesnames):
 #        os.chmod(fuiilesnames, stat.S_IWRITE)
 #        os.remove(fuiilesnames)
-#    
+#
 #    else:
 #        print("The file does not exist")
-        
+
+
 @app.route("/imgc")  # path to img to pdf
 def img2pdf():
     return render_template('imgc.html')
+
 
 @app.route("/imgc", methods=["POST"])
 def img2pdf_post():
     try:
         img = request.files['file']
         im = Image.open(img)
-        im.convert('RGB').save('compressed.jpg', optimize=True, quality=10)    
+        im.convert('RGB').save('compressed.jpg', optimize=True, quality=10)
         return send_file("compressed.jpg", as_attachment=True)
     except:
-        return render_template('imgc.html', msg= "Something went wrong the accepted formats are png and jpg" )
+        return render_template('imgc.html', msg="Something went wrong the accepted formats are png and jpg")
+
+
+@app.route("/policy")  # path to img to pdf
+def policy():
+    return render_template('policy.html')
+
+@app.route("/terms")
+def terms():
+    return render_template('terms.html')
+
+
+@app.route("/contact")
+def contact():
+    return render_template('contact.html')
+
+@app.route("/mp4")
+def mp4():
+    return render_template('mp4.html')
+
+@app.route("/mp4", methods=["POST"])
+def mp4_post():
+    f = request.files.get("file")
+    f.save(secure_filename(f.filename))
+    filename = f.filename
+    fuilesnames = secure_filename(f.filename)
+    video = VideoFileClip(fuilesnames)
+    video.audio.write_audiofile(fuilesnames + ".mp3")
     
-            
-    
-   
-    
-    
-    
-    
-    
-    
-    
-        
-    
-    
-            
-    
-        
-    
-    
+    return send_file(fuilesnames + ".mp3", as_attachment=True)
+
+
 if __name__ == "__main__":
-    app.run(debug=True,host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0')
