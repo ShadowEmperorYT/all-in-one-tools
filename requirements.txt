@@ -64,7 +64,6 @@ pyparsing==3.0.6
 python-docx==0.8.11
 pytube==11.0.2
 pytz-deprecation-shim==0.1.0.post0
-pywin32==303
 PyYAML==6.0
 requests==2.26.0
 simple-websocket==0.5.0
@@ -86,3 +85,4 @@ webencodings==0.5.1
 Werkzeug==2.0.2
 wsproto==1.0.0
 youtube-dl==2021.12.17
+
