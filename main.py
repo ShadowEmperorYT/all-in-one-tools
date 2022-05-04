@@ -1,5 +1,5 @@
-from __future__ import unicode_literals
-from flask import Flask, render_template, request, send_file, redirect
+from __future__ import unicode_literals, print_function
+from flask import Flask, render_template, request, send_file, redirect, abort, jsonify
 from werkzeug.utils import secure_filename
 from mcstatus import MinecraftServer
 from pytube import YouTube
@@ -14,9 +14,15 @@ from docx2pdf import convert
 import time
 from pdf2image import convert_from_path, convert_from_bytes
 from moviepy.editor import *
-
+from bs4 import BeautifulSoup
+from bs4.element import Comment
+import urllib.request
+from bs4 import BeautifulSoup
+from bs4.element import Comment
+import urllib.request
 from img2pdf import *
-
+from flask_ipban import IpBan
+import stripe
 UPLOAD_FOLDER = 'uploads'
 
 DOWNLOAD_FOLDER = 'downloads'
@@ -29,7 +35,9 @@ DIR_PATH = os.path.dirname(os.path.realpath(__file__))
 app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 ALLOWED_EXTENSIONS = {'pdf', 'docx', 'png', 'jpg'}
-app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024
+#10.24.189.125
+app.config['STRIPE_PUBLIC_KEY'] = 'pk_test_51KOCPZSFoweNIDQpCw8s174zt9sjOjtq8ixnpHbsRRjGduKC5PBU0zQB5ZDnmxDG9ZW5kFnHOwB4oCwFHIgHs2v100XZXSV9K2'
+app.config['STRIPE_SECRET_KEY'] = 'sk_test_51KOCPZSFoweNIDQpj0y9HkUgc0eRhHR7iLXCT83urVJTyRgesCJzBF6s8VAlvEe0DGPE1tIoSX3vsNMETEFg1KfT00sIX6Q43f'
 
 
 @app.errorhandler(404)
@@ -44,8 +52,9 @@ def allowed_file(filename):
 
 @app.route("/")  # home page
 def home():
-    return render_template("index.html")  # renders index.html
+    
 
+    return render_template("index.html")
 
 @app.route("/stats")  # minecraft status page route
 def stats():
@@ -76,18 +85,18 @@ def thumbnail():
 # post method to get the data form the user
 @app.route("/thumbnail", methods=["POST"])
 def thumbnail_post():
-  #  try:
-
-    input = request.form.get("url")  # gets input from the user
-    url = YouTube(input).thumbnail_url  # defining thumbnail url
-    title = YouTube(input).title  # displays title
+    try:
+        input = request.form.get("url")  # gets input from the user
+        url = YouTube(input).thumbnail_url  # defining thumbnail url
+        title = YouTube(input).title  # displays title
 
     # rendering everything
-    return render_template("thumbnail.html", img=url, tit=title)
+        return render_template("thumbnail.html", img=url, tit=title)
+    except:
+        
+        error = "Oops something went wrong"
+        return render_template("thumbnail.html", tit=error)
 
-    # except: #using except and try in case of any error
- #   error = "Oops something went wrong"
-  #  return render_template("thumbnail.html", tit=error)
 
 
 @app.route("/video")  # path to download youtube vidoes
@@ -100,24 +109,34 @@ def video():
 def video_post():
 
     if request.form['submit'] == '1080p':
-        input = request.form.get("url")  # gets input from the user
-        download_path = YouTube(input).streams.get_by_itag(137).download()
-        fname = download_path.split('//')[-1]
-        return send_file(fname, as_attachment=True)
+        try:
+            
+            input = request.form.get("url")  # gets input from the user
+            download_path = YouTube(input).streams.get_by_itag(137).download()
+            fname = download_path.split('//')[-1]
+            return send_file(fname, as_attachment=True)
+        except:
+            return render_template('video.html', error="Oops something went wrong")
 
     if request.form['submit'] == '720p':
-        input = request.form.get("url")  # gets input from the user
-        download_path = YouTube(input).streams.get_by_itag(22).download()
-        fname = download_path.split('//')[-1]
-        return send_file(fname, as_attachment=True)
+        try:
+            input = request.form.get("url")  # gets input from the user
+            download_path = YouTube(input).streams.get_by_itag(22).download()
+            fname = download_path.split('//')[-1]
+            return send_file(fname, as_attachment=True)
+        except:
+            
+            render_template('video.html', error="Oops something went wrong")
 
     if request.form['submit'] == '360p':
-        input = request.form.get("url")
-        download_path = YouTube(input).streams.get_by_itag(18).download()
-        fname = download_path.split('//')[-1]
-        return send_file(fname, as_attachment=True)
-
-
+        try:
+            input = request.form.get("url")
+            download_path = YouTube(input).streams.get_by_itag(18).download()
+            fname = download_path.split('//')[-1]
+            return send_file(fname, as_attachment=True)
+        except:
+            return render_template('video.html', error="Oops something went wrong")
+                       
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -131,10 +150,14 @@ def music():
 
 @app.route("/music_s", methods=['GET', 'POST'])  # path to lyrics
 def music_post():
-    input = request.form.get("url")  # gets input from the user
-    download_path = YouTube(input).streams.get_by_itag(251).download()
-    fname = download_path.split('//')[-1]
-    return send_file(fname, as_attachment=True)
+    try:
+        
+        input = request.form.get("url")  # gets input from the user
+        download_path = YouTube(input).streams.get_by_itag(251).download()
+        fname = download_path.split('//')[-1]
+        return send_file(fname, as_attachment=True)
+    except:
+        return render_template('music.html', error="Oops something went wrong")
 
 
 @app.route("/img")  # path to pdf to docx
@@ -239,6 +262,7 @@ def img2pdf_post():
 def policy():
     return render_template('policy.html')
 
+
 @app.route("/terms")
 def terms():
     return render_template('terms.html')
@@ -248,21 +272,45 @@ def terms():
 def contact():
     return render_template('contact.html')
 
+
 @app.route("/mp4")
 def mp4():
     return render_template('mp4.html')
 
+
 @app.route("/mp4", methods=["POST"])
 def mp4_post():
-    f = request.files.get("file")
-    f.save(secure_filename(f.filename))
-    filename = f.filename
-    fuilesnames = secure_filename(f.filename)
-    video = VideoFileClip(fuilesnames)
-    video.audio.write_audiofile(fuilesnames + ".mp3")
-    
-    return send_file(fuilesnames + ".mp3", as_attachment=True)
+    try:
+        
+        f = request.files.get("file")
+        f.save(secure_filename(f.filename))
+        filename = f.filename
+        fuilesnames = secure_filename(f.filename)
+        video = VideoFileClip(fuilesnames)
+        video.audio.write_audiofile(fuilesnames + ".mp3")
 
+        return send_file(fuilesnames + ".mp3", as_attachment=True)
+    except:
+        return render_template('mp4.html', msg="Oops something went wrong")
+        
+@app.route("/login")
+def login():
+    return render_template('login.html')
+
+
+@app.route("/login", methods=["POST"])
+def login_post():
+    try:
+        email =  request.form.get['email']
+        password = request.form.get['password']
+        return render_template('index.html')
+        
+    except:
+        return render_template('login.html', msg='Oops something went wrong')
+    
+stripe.api_key = "sk_test_51KOCPZSFoweNIDQpj0y9HkUgc0eRhHR7iLXCT83urVJTyRgesCJzBF6s8VAlvEe0DGPE1tIoSX3vsNMETEFg1KfT00sIX6Q43f"
+
+    
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0',threaded=True)

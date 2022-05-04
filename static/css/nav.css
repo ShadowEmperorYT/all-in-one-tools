@@ -164,3 +164,43 @@ footer{
     flex: 2 0px;
   }
 }
+
+
+
+/*NAv*/
+
+
+.topnav {
+  background-color: black;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #0087ca;
+  text-align: center;
+  font-family: "Nunito", sans-serif;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  color: #0087ca;
+}
+
+
+
+
+@media screen and (min-width:1300px){
+  
+  
+}

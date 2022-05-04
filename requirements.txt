@@ -17,6 +17,7 @@ ffprobe==0.5
 filetype==1.0.9
 fire==0.4.0
 Flask==2.0.2
+flask-ipban==1.1.5
 fonttools==4.28.5
 gunicorn==20.1.0
 idna==3.3
@@ -49,6 +50,7 @@ pyparsing==3.0.6
 python-docx==0.8.11
 pytube==11.0.2
 pytz-deprecation-shim==0.1.0.post0
+PyYAML==6.0
 requests==2.26.0
 six==1.16.0
 soupsieve==2.3.1
