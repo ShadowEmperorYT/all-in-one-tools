@@ -314,5 +314,5 @@ stripe.api_key = "sk_test_51KOCPZSFoweNIDQpj0y9HkUgc0eRhHR7iLXCT83urVJTyRgesCJzB
     
 
 if __name__ == "__main__":
-    port =  3000 #int(os.environ.get("PORT")) or 3000
+    port =  int(os.environ.get("PORT")) 
     app.run(debug=True, host='0.0.0.0',port=port,threaded=True)
