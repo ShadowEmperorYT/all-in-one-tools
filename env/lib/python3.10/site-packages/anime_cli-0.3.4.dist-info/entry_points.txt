@@ -1,0 +1,3 @@
+[console_scripts]
+anime-cli=anime_cli.__main__:main
+

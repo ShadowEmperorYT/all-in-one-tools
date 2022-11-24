@@ -1,4 +1,5 @@
 from __future__ import unicode_literals, print_function
+from yt_dlp import YoutubeDL
 from flask import Flask, render_template, request, send_file, redirect, abort, jsonify
 from werkzeug.utils import secure_filename
 from mcstatus import MinecraftServer
@@ -111,14 +112,15 @@ def video_post():
     if request.form['submit'] == '1080p':
         try:
             
-            input = request.form.get("url")  # gets input from the user
-            download_path = YouTube(input).streams.get_by_itag(137).download()
+            input = request.form['url']  # gets input from the user
+            download_path = YoutubeDL.download([input])
             fname = download_path.split('//')[-1]
             return send_file(fname, as_attachment=True)
-        except:
+        except Exception as e:
+            print(e)
             return render_template('video.html', error="Oops something went wrong")
 
-    if request.form['submit'] == '720p':
+    elif request.form['submit'] == '720p':
         try:
             input = request.form.get("url")  # gets input from the user
             download_path = YouTube(input).streams.get_by_itag(22).download()
@@ -128,7 +130,7 @@ def video_post():
             
             render_template('video.html', error="Oops something went wrong")
 
-    if request.form['submit'] == '360p':
+    elif request.form['submit'] == '360p':
         try:
             input = request.form.get("url")
             download_path = YouTube(input).streams.get_by_itag(18).download()
@@ -313,5 +315,5 @@ stripe.api_key = "sk_test_51KOCPZSFoweNIDQpj0y9HkUgc0eRhHR7iLXCT83urVJTyRgesCJzB
     
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT"))
+    port =  3000 #int(os.environ.get("PORT")) or 3000
     app.run(debug=True, host='0.0.0.0',port=port,threaded=True)
