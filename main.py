@@ -1,5 +1,5 @@
 from __future__ import unicode_literals, print_function
-from yt_dlp import YoutubeDL
+
 from flask import Flask, render_template, request, send_file, redirect, abort, jsonify
 from werkzeug.utils import secure_filename
 from mcstatus import MinecraftServer
@@ -8,9 +8,7 @@ from PyLyrics import *
 from PIL import Image
 import os
 from datetime import datetime
-import youtube_dl
-from tube_dl import Youtube
-from pydub import AudioSegment
+
 from docx2pdf import convert
 import time
 from pdf2image import convert_from_path, convert_from_bytes
@@ -108,7 +106,8 @@ def video():
 
 @app.route("/video", methods=["POST"])
 def video_post():
-
+    return "Under working"
+'''
     if request.form['submit'] == '1080p':
         try:
             
@@ -138,7 +137,7 @@ def video_post():
             return send_file(fname, as_attachment=True)
         except:
             return render_template('video.html', error="Oops something went wrong")
-                       
+      '''                 
 def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
