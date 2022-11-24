@@ -1,5 +1,4 @@
 anime-cli==0.3.4
-yt-dlp
 asgiref==3.5.0
 asyncio-dgram==2.1.0
 AudioConverter==0.4.1
